@@ -26,8 +26,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
@@ -35,8 +34,7 @@ export default function Home() {
         });
       },
       {
-        rootMargin: "-64px 0px -50% 0px", // accounts for navbar height
-        threshold: 0.1,
+        threshold: 0.6,
       }
     );
 
@@ -50,33 +48,37 @@ export default function Home() {
 
   return (
     <div 
-      className="flex min-h-screen items-center justify-center bg-background font-sans"
+      className="overflow-hidden h-screen bg-background font-sans"
     >
       {/* Navigation Bar */}
-        <nav className="fixed top-0 left-0 z-50 w-full bg-gray-800/80 backdrop-blur">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="flex h-16 items-center space-x-4">
+        <nav className="fixed top-0 left-0 z-50 w-full bg-[#1b2a41]/60 backdrop-blur-md">
+          <div className="mx-auto max-w-7xl px-2">
+            <div className="flex h-16 items-center justify-end space-x-6">
               {sections.map(({ id, label }) => (
                 <a
                   key={id}
                   href={`#${id}`}
                   className="relative px-3 py-2 text-sm"
                 >
-                  {/* Active background */}
+                  {/* Active Item */}
                   {activeSection === id && (
-                    <motion.span
-                      layoutId="active-pill"
-                      className="absolute inset-0 rounded-md bg-gray-950/50"
-                      transition={{ type: "spring", stiffness: 500, damping: 50 }}
+                    <motion.div
+                      layoutId="nav-underline"
+                      className="absolute left-0 right-0 -bottom-1 h-0.5 bg-[#ccc9dc]"
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 500, 
+                        damping: 50
+                      }}
                     />
                   )}
 
-                  {/* Text */}
+                  {/* Inactive Item */}
                   <span
                     className={`relative z-10 ${
                       activeSection === id
-                        ? "text-white"
-                        : "text-gray-300 hover:text-white transition-colors duration-200"
+                        ? "text-[#ccc9dc]"
+                        : "text-gray-400 hover:text-[#ccc9dc] transition-colors duration-200"
                     }`}
                   >
                     {label}
@@ -88,7 +90,19 @@ export default function Home() {
         </nav>
 
       {/* Main Content */}
-      <main className="p-16 flex min-h-screen w-full max-w-4xl flex-col items-center justify-between py-32 px-16 sm:items-start">
+      <main className="
+        h-full
+        w-full 
+        flex
+        flex-col 
+        items-center
+        snap-y
+        snap-mandatory
+        scroll-smooth
+        overscroll-contain
+        overflow-y-scroll
+        scrollbar-none
+      ">
         <Section id="home" title="Welcome to My Portfolio">
           <p className="mt-4 text-lg">
             Hi! I&apos;m [Your Name], a passionate full-stack developer. Explore my work and get to know more about me!
