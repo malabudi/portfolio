@@ -1,20 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0c1821;
-  --foreground: #ededed;
+  --background: #ffffff;
+  --surface: #e5e5e5;
+  --textPrimary: #000000;
+  --textSecondary: #14213d;
+  --accent: #fca311;
+
+  /* Nav Colors */
+  --navBg: #000000;
+  --navText: #e5e5e5;
+  --navTextHover: #ffffff;
+  --navToggleBg: #e5e5e5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #141414;
+    --surface: #14213d;
+    --textPrimary: #ffffff;
+    --textSecondary: #e5e5e5;
+    --accent: #fca311;
+  }
+}
+
+[data-theme="light"] {
+  --background: #ffffff;
+  --surface: #e5e5e5;
+  --textPrimary: #000000;
+  --textSecondary: #14213d;
+  --accent: #fca311;
+}
+
+[data-theme="dark"] {
+  --background: #141414;
+  --surface: #14213d;
+  --textPrimary: #ffffff;
+  --textSecondary: #e5e5e5;
+  --accent: #fca311;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-foreground: var(--textPrimary);
+  --color-muted: var(--textSecondary);
+  --color-accent: var(--accent);
+
+  /* Nav Colors */
+  --color-nav-bg: var(--navBg);
+  --color-nav-text: var(--navText);
+  --color-nav-text-hover: var(--navTextHover);
+  --color-nav-toggle-bg: var(--navToggleBg);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--textPrimary);
   font-family: Arial, Helvetica, sans-serif;
 }
 

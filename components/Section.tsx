@@ -16,7 +16,7 @@ export default function Section({ id, title, children }: SectionProps) {
         snap-start 
         scroll-mt-16 
         min-h-screen 
-        px-16 
+        px-8
         py-12
         flex
         flex-col
@@ -27,7 +27,7 @@ export default function Section({ id, title, children }: SectionProps) {
       viewport={{ once: true, margin: "-100px" }}
     >
       <div className="w-full max-w-4xl px-16 pt-16">
-        <h1 className="text-5xl font-bold">{title}</h1>
+        <h1 className="text-5xl font-bold text-center pb-6">{title}</h1>
         {children}
       </div>
     </motion.section>
