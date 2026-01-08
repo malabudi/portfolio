@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --surface: #e5e5e5;
+  --background: #fff7eb;
+  --surface: #ac8b67;
   --textPrimary: #000000;
-  --textSecondary: #14213d;
+  --textSecondary: #121212;
   --accent: #fca311;
 
   /* Nav Colors */
@@ -12,32 +12,6 @@
   --navText: #e5e5e5;
   --navTextHover: #ffffff;
   --navToggleBg: #e5e5e5;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #141414;
-    --surface: #14213d;
-    --textPrimary: #ffffff;
-    --textSecondary: #e5e5e5;
-    --accent: #fca311;
-  }
-}
-
-[data-theme="light"] {
-  --background: #ffffff;
-  --surface: #e5e5e5;
-  --textPrimary: #000000;
-  --textSecondary: #14213d;
-  --accent: #fca311;
-}
-
-[data-theme="dark"] {
-  --background: #141414;
-  --surface: #14213d;
-  --textPrimary: #ffffff;
-  --textSecondary: #e5e5e5;
-  --accent: #fca311;
 }
 
 @theme inline {
@@ -77,4 +51,27 @@ body {
 .scrollbar-none {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
+}
+
+/* Hero CSS */
+@keyframes slide {
+  0% { transform: translateX(-25vw); }
+  100% { transform: translateX(25vw); }
+}
+
+.puzzle {
+  --r: 30px;  /* control the circle radius */
+  --s: 200px; /* control the main size */
+
+  width: calc(var(--s) + var(--r));
+  aspect-ratio: 1;
+  --_l:#0000 calc(100% - 1px),#000;
+  --_g:100% 0/calc(100% - var(--r)) calc(100% - var(--r)) no-repeat;
+  --_m:/calc(2*var(--r)) calc(2*var(--r)) no-repeat
+    radial-gradient(var(--r),#000 calc(100% - 1px),#0000);
+  mask: 
+    0 calc(50% - var(--r)/2) var(--_m),calc(50% + var(--r)/2) 100% var(--_m),
+    radial-gradient(var(--r) at top  ,var(--_l)) var(--_g) intersect,
+    radial-gradient(var(--r) at right,var(--_l)) var(--_g);
+  background: linear-gradient(128deg, #ac8b67, #763400);
 }

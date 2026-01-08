@@ -3,32 +3,18 @@
 import Section from "@/components/Section";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "@/hooks/useTheme";
-import { Sun, Moon } from "lucide-react";
-import UserRound from "@/components/UserIcon";
-
+import HeroBackground from "@/components/HeroBackground";
+import InteractiveShape from "@/components/InteractivePuzzle";
 
 const sections = [
   { id: "home", label: "Home" },
-  { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "certifications", label: "Certifications" },
-  { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
 
 export default function Home() {
-  /*
-  #000000
-  #14213d
-  #fca311
-  #e5e5e5
-  #ffffff
-  */
-
   const [activeSection, setActiveSection] = useState("home");
-  const { theme, toggleTheme } = useTheme();
-
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -56,7 +42,7 @@ export default function Home() {
       className="overflow-hidden h-screen bg-background text-foreground font-sans"
     >
       {/* Navigation Bar */}
-        <nav className="fixed top-0 left-0 z-50 w-full bg-nav-bg/75 backdrop-blur-md">
+        <nav className="fixed top-0 left-0 z-50 w-full bg-nav-bg/85 backdrop-blur-md">
           <div className="mx-auto max-w-7xl px-2 pl-6">
             <div className="flex h-16 items-center justify-end space-x-4">
               {sections.map(({ id, label }) => (
@@ -90,30 +76,6 @@ export default function Home() {
                   </span>
                 </a>
               ))}
-              <button
-                onClick={toggleTheme}
-                className="
-                  ml-4
-                  inline-flex
-                  h-9
-                  w-9
-                  items-center
-                  justify-center
-                  rounded-4xl
-                  bg-nav-toggle-bg
-                  text-black
-                  hover:bg-accent/90
-                  transition-colors
-                "
-                aria-label="Toggle theme"
-                title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
-              >
-                {theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </button>
             </div>
           </div>
         </nav>
@@ -132,29 +94,26 @@ export default function Home() {
         overflow-y-scroll
         scrollbar-none
       ">
-        <Section id="home" title="Hello 👋 I'm Mohamad">
-          <div className="flex flex-row items-center">
-            <div className="max-w-xl">
-              <p className="pt-4 text-lg text-muted mr-16">
-                I am a passionate developer with experience across full-stack development, devops, and Java backend systems, 
-                coding professionally and as a lifelong hobby since writing my first lua script.
+        <Section 
+          id="home"
+        >
+          <HeroBackground />
+          <div className="flex w-full flex-row items-center justify-center flex-wrap">
+            <div className="flex-1">
+              <h1 className="relative text-5xl font-bold pb-4">👋 Hello, I&apos;m Mohamad</h1>
+              <p className="pt-4 z-10 text-lg text-[#000000]">
+                I am a software developer with experience across full-stack development, 
+                devops, and Java backend systems, coding professionally and as a lifelong hobby.
               </p>
-              <br />
-              <p className="pt-4 text-lg text-muted mr-16">
-                In my free time, I enjoy playing video games like factorio or modded minecraft, fishing, and playing guitar and drums.
-              </p>
-              <br/>
-              <p className="pt-4 text-lg text-muted mr-16">
-                Explore my work to see what I&apos;ve built, and feel free to reach out to me for collaborations, job opportunities, or just to say hi!
+              <p className="pt-4 z-10 text-lg text-[#000000]">
+                In my free time, I enjoy playing video games like factorio or modded minecraft, 
+                fishing, and playing guitar and drums.
               </p>
             </div>
-            <UserRound />
+            <div className="perspective-midrange ">
+              <InteractiveShape />
+            </div>
           </div>
-        </Section>
-        <Section id="experience" title="Experience">
-          <p className="mt-4 text-lg text-muted">
-            Welcome to my portfolio! Here you&apos;ll find a showcase of my professional experience, projects, certifications, skills, and ways to get in touch with me.
-          </p>
         </Section>
         <Section id="projects" title="Projects">
           <p className="mt-4 text-lg text-muted">
@@ -164,11 +123,6 @@ export default function Home() {
         <Section id="certifications" title="Certifications">
           <p className="mt-4 text-lg text-muted">
             Here are some of the certifications I&apos;ve earned that validate my knowledge and skills in the tech industry.
-          </p>
-        </Section>
-        <Section id="skills" title="Skills">
-          <p className="mt-4 text-lg text-muted">
-            A comprehensive list of my technical and soft skills that I bring to the table.
           </p>
         </Section>
         <Section id="contact" title="Contact Me">
